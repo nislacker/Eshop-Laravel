@@ -8,7 +8,7 @@ use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Product extends Model
 {
-    use SearchableTrait, Searchable;
+    //use Searchable; SearchableTrait,
 
     protected $fillable = ['quantity'];
 
@@ -39,7 +39,11 @@ class Product extends Model
 
     public function presentPrice()
     {
-        return money_format('$%i', $this->price / 100);
+        //$fmt = new NumberFormatter( 'ru_RU', NumberFormatter::CURRENCY );
+        //echo $fmt->formatCurrency(1234567.891234567890000, "EUR")."\n";
+
+        return $this->price / 100 . " USD";//$fmt->formatCurrency($this->price / 100, "USD");
+        //money_format('$%i', $this->price / 100);
     }
 
     public function scopeMightAlsoLike($query)
